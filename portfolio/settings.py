@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-tg-xt=ih6d-_tul$h=5456!)p)ylyf54ip*6e6*s^pido&e6(f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['johnston.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

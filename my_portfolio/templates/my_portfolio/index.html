@@ -1,0 +1,94 @@
+{% extends 'my_portfolio/base.html' %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-content">
+        <h1>Johnston Kweku</h1>
+        <p>Web Developer & Portfolio Creator</p>
+        <div class="hero-buttons">
+            <a href="{% url 'my_portfolio:projects' %}" class="btn-primary">View Projects</a>
+            <a href="#contact" class="btn-secondary">Contact Me</a>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about">
+    <h2>About Me</h2>
+    <p>I’m Johnston, a Django web developer and graphic designer who helps individuals and brands establish a professional online presence. I build responsive, easy-to-manage websites that combine solid backend functionality with clean, user-focused design.</p>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="featured-projects">
+    <h2>Featured Projects</h2>
+    <div class="projects-container">
+        {% for project in projects|slice:":4" %}
+        <div class="project-card">
+            <img src="{{ project.image.url }}" alt="{{ project.title }}">
+            <h3>{{ project.title }}</h3>
+            <p class="description">{{ project.description|truncatechars:80 }}</p>
+            <a href="{{ project.link }}" class="project-link" target="_blank">View Project</a>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="view-all">
+        <a href="{% url 'my_portfolio:projects' %}" class="btn-primary">View All Projects</a>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+    <h2>Contact Me</h2>
+   <a href="mailto:johnstonkweku@gmail.com?subject=Hello&body=I%20would%20like%20to%20know%20more%20about%20your%20projects." 
+   style="
+       display: inline-block;
+       padding: 12px 24px;
+       background-color: #4CAF50;
+       color: white;
+       text-decoration: none;
+       font-weight: 600;
+       font-size: 16px;
+       border-radius: 8px;
+       transition: background-color 0.3s ease, transform 0.2s ease;
+       text-align: center;
+       min-width: 120px;
+   "
+   onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='scale(1.05)';"
+   onmouseout="this.style.backgroundColor='#4CAF50'; this.style.transform='scale(1)';"
+>
+    Email
+</a>
+<a href="https://wa.me/233595471021?text=Hello%20Johnston,%20I%20would%20like%20to%20know%20more%20about%20your%20projects." 
+   style="
+       display: inline-block;
+       padding: 12px 24px;
+       background-color: #25D366;
+       color: white;
+       text-decoration: none;
+       font-weight: 600;
+       font-size: 16px;
+       border-radius: 8px;
+       transition: background-color 0.3s ease, transform 0.2s ease;
+       text-align: center;
+       min-width: 150px;
+   "
+   onmouseover="this.style.backgroundColor='#1ebe5d'; this.style.transform='scale(1.05)';"
+   onmouseout="this.style.backgroundColor='#25D366'; this.style.transform='scale(1)';"
+>
+    Chat on WhatsApp
+</a>
+
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>&copy; {{ now.year }} Johnston Kweku Abubakar. All Rights Reserved.</p>
+    <div class="social-links">
+        <a href="https://github.com/johnston-kweku" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/johnston-kweku-b94796389" target="_blank">LinkedIn</a>
+    </div>
+</footer>
+
+{% endblock content %}

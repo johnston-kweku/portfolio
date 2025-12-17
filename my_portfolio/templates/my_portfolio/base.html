@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Johnston's Portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="brand">Johnston</div>
+        <div class="hamburger" id="hamburger">&#9776;</div>
+        <div class="nav-links" id="nav-links">
+            {% if user.is_authenticated %}
+                <span class="greeting">Hello, {{ user.username }}</span>
+                <a class="nav-btn" href="{% url 'my_portfolio:add_projects' %}">Add Projects</a>
+                <a class="nav-btn" href="{% url 'user:logout' %}">Logout</a>
+                {% if request.resolver_match.url_name != 'projects' %}
+                    <a class="nav-btn" href="{% url 'my_portfolio:projects' %}">Projects</a>
+                {% endif %}
+            {% else %}
+                <a class="nav-btn" href="{% url 'user:login' %}">Login</a>
+                {% endif %}
+                {% if request.resolver_match.url_name != 'index' %}
+               <a href="{% url 'my_portfolio:index' %}" 
+   style="
+       display: inline-block;
+       padding: 12px 24px;
+       background-color: #007BFF;
+       color: white;
+       text-decoration: none;
+       font-weight: 600;
+       font-size: 16px;
+       border-radius: 8px;
+       transition: background-color 0.3s ease, transform 0.2s ease;
+       text-align: center;
+       min-width: 100px;
+   "
+   onmouseover="this.style.backgroundColor='#0069d9'; this.style.transform='scale(1.05)';"
+   onmouseout="this.style.backgroundColor='#007BFF'; this.style.transform='scale(1)';"
+>
+    Home
+</a>
+{% endif %}
+
+        </div>
+    </nav>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script>
+        // Hamburger toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>

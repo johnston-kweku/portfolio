@@ -1,0 +1,21 @@
+{% extends 'my_portfolio/base.html' %}
+
+{% block content %}
+<div class="delete-wrapper">
+    <div class="delete-card">
+        <h2>Confirm Deletion</h2>
+        <p>
+            Are you sure you want to delete
+            <span class="project-title">“{{ project.title }}”</span>?
+        </p>
+
+        <form method="post" action="{% url 'my_portfolio:delete_project' project.id %}">
+            {% csrf_token %}
+            <div class="delete-actions">
+                <button type="submit" class="delete-confirm">Yes, Delete</button>
+                <a href="{% url 'my_portfolio:projects' %}" class="delete-cancel">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
